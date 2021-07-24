@@ -15,5 +15,9 @@ use App\Http\Controllers\ItemController;
 |
 */
 
-Route::get("/",[CategoryController::class,"index"]);
-Route::get("/item",[ItemController::class,"FatchItem"]);
+// Route::get("/",[CategoryController::class,"index"]);
+// Route::get("/item",[ItemController::class,"FatchItem"]);
+
+
+Route::get("/",[ItemController::class,"index"]);
+

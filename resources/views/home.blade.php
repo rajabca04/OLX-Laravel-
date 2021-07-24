@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -46,4 +46,43 @@
     </div>
 
 </body>
-</html>
+</html> --}}
+
+
+@extends('base')
+
+@section('content')
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="list-group">
+                    @foreach ($cat as $c)
+                    <a href="" class="list-group-item list-group-litem-action">{{$c->title}}</a>
+                    @endforeach
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="row">
+                    @foreach ($pro as $item)
+
+
+                    <div class="col-3">
+                        <div class="card mb-3">
+                            <img src="{{$item->image}}" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4>Rs.{{$item->price}}</h4>
+                                <h6>{{$item->pro_title}}</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    @endforeach
+
+                    <div class="col-lg-10 mx-auto">
+                        {{$pro->links()}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
