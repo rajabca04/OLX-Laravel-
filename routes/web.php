@@ -21,3 +21,21 @@ use App\Http\Controllers\ItemController;
 
 Route::get("/",[ItemController::class,"index"]);
 
+    
+
+Route::get("/filter/{id}",[ItemController::class,"filter"])->name("filter");
+Route::get("/search",[ItemController::class,"search"])->name('search');
+Route::get("/view/{itemId}/category/{catId}",[ItemController::class,"view"])->name('view'); 
+Route::match(["get","post"],"/register",[ItemController::class,"register"])->name('register');
+Route::match(["get","post"],"/login",[ItemController::class,"login"])->name('login');
+
+
+Route::group(["middleware"=>"loginCheck"],function(){
+    Route::match(["get","post"],"/logout",[ItemController::class,"logout"])->name('logout');
+    Route::match(['get', 'post'],"/insertItem",[ItemController::class,"insert"])->name('insertItem');
+    Route::post("/insertCat",[ItemController::class,"insertCat"])->name('insertCat');
+});
+
+
+
+
