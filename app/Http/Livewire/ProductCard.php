@@ -5,14 +5,13 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 
 class ProductCard extends Component
-{
+{   public $pro;
     public function render()
-    {
+    {   
         return <<<'blade'
             <div>
-                <div class="col-lg-3">
                 <div class="card">
-                    <img src="" alt="" class="card-img-top">
+                    <img src="{{asset('products/'.$pro->image)}}", alt="" class="card-img-top" style="height: 230px;">
                     <div class="card-body">
                         <h4>
                             Rs. 688/-
@@ -20,10 +19,8 @@ class ProductCard extends Component
                         <h6>
                             Title
                         </h6>
-                        <a href="" class="nav-link stretched-link"></a>
-                        
+                        <a href="" class="nav-link stretched-link"></a>   
                     </div>
-                </div>
                 </div>
             </div>
         blade;

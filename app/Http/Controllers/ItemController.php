@@ -1,20 +1,17 @@
 <?php
-
 namespace App\Http\Controllers;
-
+use App\Http\Livewire\ProductCard;
 use App\Models\Category;
 use App\Models\Item;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Redis\RedisManager;
-
 class ItemController extends Controller
 {
     public function index(){
-        $data = ['cat'=>Category::all()];
+        $data = ['cat'=>Category::all(),"product"=>Item::all()];
         return view("home",$data);
     }
 
@@ -105,14 +102,14 @@ class ItemController extends Controller
         return view("register");
     }
 
-    public function login(Request $request)
-    {
+    public function login(Request $request){
         if($request->method() == "POST"){
             $user = User::where("email",$request->email)->first();
 
             if($user->exists()){
                 echo "valid User";
-                if(User::where("email",$request->email)->where("password",Hash::check($user->password, $request->password))->exists()){
+                if(User::where("email",$request->email)->where
+                    ("password",Hash::check($user->password,$request->password))->exists()){
                     return redirect("insertItem");
                 }
             
@@ -137,5 +134,4 @@ class ItemController extends Controller
 
 
     }
-
 }
